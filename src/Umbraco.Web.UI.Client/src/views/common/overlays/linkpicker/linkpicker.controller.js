@@ -76,7 +76,16 @@ angular.module("umbraco").controller("Umbraco.Overlays.LinkPickerController",
 				//un-select if there's a current one selected
 				$scope.currentNode.selected = false;
 			}
-
+            if ($scope.currentNode == args.node) {
+                $scope.currentNode = null;
+                args.node = null;
+                $scope.model.target.id = null;
+                $scope.model.target.udi = null;
+                $scope.model.target.name = null;
+                $scope.model.target.url = null;
+                $scope.model.target.isMedia = null;
+                return;
+            }
 			$scope.currentNode = args.node;
 			$scope.currentNode.selected = true;
 			$scope.model.target.id = args.node.id;
